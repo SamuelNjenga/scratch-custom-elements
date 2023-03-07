@@ -52,6 +52,21 @@ class ActivityItem extends HTMLElement {
     // this.title = shadow.querySelector("[data-title]")
     // this.title.innerText = this.innerText
     // this.innerHTML = `<style>h3{color:green}</style><h3>${this.innerText}</h3>`;
+    // add what you are going to us
+    this.checkbox = shadow.querySelector("input");
+  }
+  // In order to check what attributes changed first say you need to absorb these attributes
+  // These attributes passed in array will cause attributeChangedCallback to trigger
+  static get observedAttributes() {
+    return ["checked"];
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    // console.log(name, oldValue, newValue);
+    if (name === "checked") this.updateChecked(newValue);
+  }
+  // Function to update this checked property for us.
+  updateChecked(value) {
+    this.checkbox.checked = value != null && value !== "false";
   }
 }
 // Register custom element with the dom
