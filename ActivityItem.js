@@ -17,6 +17,27 @@ template.innerHTML = `
   </h3>
   `;
 
+template.innerHTML = `
+  <style>
+   label { color: red;
+   display: block;
+}
+.description {
+    font-size: .65rem;
+    font-weight: lighter;
+    color: #777;
+}
+  </style>
+  <label>
+  <input type="checkbox" />
+  <slot></slot>
+  <span class="description">
+  <slot name="description">
+  </slot>
+  </span>
+  </label>
+  `;
+
 // Create custom HTML Element
 class ActivityItem extends HTMLElement {
   constructor() {
